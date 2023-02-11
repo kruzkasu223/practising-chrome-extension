@@ -28,13 +28,7 @@ function App() {
 
   return (
     <div className="App">
-      <div>
-        <img src={viteLogo} className="logo" alt="Vite logo" />
-        <img src={reactLogo} className="logo react" alt="React logo" />
-      </div>
-
-      <h1>Vite + React</h1>
-      <h2>Chrome Extension Test</h2>
+      <h1>Chrome Extension Test</h1>
 
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
@@ -42,10 +36,11 @@ function App() {
         </button>
       </div>
 
+      <br />
       <hr />
 
       {buttons.map((button) => (
-        <h1>{button}</h1>
+        <h2>{button}</h2>
       ))}
     </div>
   )
