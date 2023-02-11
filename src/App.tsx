@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react"
-import reactLogo from "./assets/react.svg"
-import viteLogo from "./assets/vite.svg"
 import { DOMMessage, DOMMessageResponse } from "./types"
 
 function App() {
