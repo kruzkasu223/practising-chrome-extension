@@ -1,32 +1,52 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useEffect, useState } from "react"
+import reactLogo from "./assets/react.svg"
+import viteLogo from "./assets/vite.svg"
+import { DOMMessage, DOMMessageResponse } from "./types"
 
 function App() {
   const [count, setCount] = useState(0)
+  const [buttons, setButtons] = useState([""])
+
+  useEffect(() => {
+    chrome.tabs &&
+      chrome.tabs.query(
+        {
+          active: true,
+          currentWindow: true,
+        },
+        (tabs) => {
+          chrome.tabs.sendMessage(
+            tabs[0].id || 0,
+            { type: "GET_DOM" } as DOMMessage,
+            (response: DOMMessageResponse) => {
+              setButtons(response.buttons)
+            }
+          )
+        }
+      )
+  }, [count])
 
   return (
     <div className="App">
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <img src={viteLogo} className="logo" alt="Vite logo" />
+        <img src={reactLogo} className="logo react" alt="React logo" />
       </div>
+
       <h1>Vite + React</h1>
+      <h2>Chrome Extension Test</h2>
+
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+          Refetch Buttons
         </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+
+      <hr />
+
+      {buttons.map((button) => (
+        <h1>{button}</h1>
+      ))}
     </div>
   )
 }

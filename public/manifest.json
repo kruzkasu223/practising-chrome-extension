@@ -1,0 +1,14 @@
+{
+  "name": "Chrome Extension Test",
+  "description": "Chrome Extension Test",
+  "version": "0.0.1",
+  "manifest_version": 3,
+  "permissions": ["activeTab", "scripting", "declarativeContent", "tabs"],
+  "action": { "default_popup": "index.html" },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["content-script.js"]
+    }
+  ]
+}
