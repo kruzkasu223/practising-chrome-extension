@@ -1,17 +1,15 @@
 import { useEffect, useState } from "react"
-import { DOMMessage, DOMMessageResponse, InputType } from "./types"
+import {
+  DOMMessage,
+  DOMMessageResponse,
+  InputType,
+  SelectedInputType,
+} from "./types"
 
 function App() {
   const [count, setCount] = useState(0)
   const [inputs, setInputs] = useState<InputType[] | undefined>()
-  const [selectedInput, setSelectedInput] = useState<
-    | {
-        inputName: string
-        inputType: string
-        inputValue?: string
-      }
-    | undefined
-  >()
+  const [selectedInput, setSelectedInput] = useState<SelectedInputType>()
 
   useEffect(() => {
     chrome.tabs &&

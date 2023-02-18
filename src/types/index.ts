@@ -14,3 +14,11 @@ export type InputType = {
   name: string
   type: string
 }
+
+export type SelectedInputType =
+  | {
+      inputName: string
+      inputType: string
+      inputValue?: string
+    }
+  | undefined
